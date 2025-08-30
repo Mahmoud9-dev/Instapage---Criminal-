@@ -1,0 +1,114 @@
+<!-- ================================================ -->
+<!-- COPY THIS ENTIRE BLOCK TO INSTAPAGE HEAD SECTION -->
+<!-- PASTE AT THE VERY TOP OF HEAD SECTION            -->
+<!-- ================================================ -->
+
+<!-- Phase 1: Preconnect for External Resources -->
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://www.googletagmanager.com" />
+<link rel="preconnect" href="https://intaker.co" />
+
+<!-- Phase 1: Optimized Font Loading -->
+<style>
+  /* Remove existing Google Fonts imports and replace with this */
+  @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap");
+
+  /* Font Display Optimization */
+  * {
+    font-display: swap;
+  }
+
+  body {
+    font-family: "Open Sans", Arial, sans-serif;
+    font-display: swap;
+  }
+
+  .text-fallback {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  /* Phase 3: Layout Shift Prevention */
+  img {
+    height: auto;
+    max-width: 100%;
+  }
+
+  /* Reserve space for images to prevent CLS */
+  img[width][height] {
+    aspect-ratio: attr(width) / attr(height);
+  }
+
+  /* Prevent layout shift during lazy loading */
+  .lazy {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  .lazy.loaded {
+    opacity: 1;
+  }
+</style>
+
+<!-- Phase 2: Clean GTM Implementation (REPLACE existing GTM) -->
+<script>
+  (function (w, d, s, l, i) {
+    w[l] = w[l] || [];
+    w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+    var f = d.getElementsByTagName(s)[0],
+      j = d.createElement(s),
+      dl = l != "dataLayer" ? "&l=" + l : "";
+    j.async = true;
+    j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+    f.parentNode.insertBefore(j, f);
+  })(window, document, "script", "dataLayer", "GTM-TC4MXD2T");
+</script>
+
+<!-- Phase 4: Critical Inline Performance Script -->
+<script>
+  // Critical performance optimizations
+  window.addEventListener("DOMContentLoaded", function () {
+    // Preload critical resources
+    const criticalResources = [
+      "https://fonts.gstatic.com/s/opensans/v34/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS-mu0SC55I.woff2",
+    ];
+
+    criticalResources.forEach(function (url) {
+      const link = document.createElement("link");
+      link.rel = "preload";
+      link.as = "font";
+      link.type = "font/woff2";
+      link.crossOrigin = "anonymous";
+      link.href = url;
+      document.head.appendChild(link);
+    });
+  });
+
+  // Enhanced lazy loading performance
+  if ("IntersectionObserver" in window) {
+    const imageObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            if (img.dataset.src) {
+              img.src = img.dataset.src;
+              img.classList.remove("lazy");
+              img.classList.add("loaded");
+              observer.unobserve(img);
+            }
+          }
+        });
+      },
+      {
+        rootMargin: "50px 0px",
+        threshold: 0.01,
+      }
+    );
+
+    // Apply to existing lazy images
+    document.querySelectorAll("img.lazy").forEach((img) => {
+      imageObserver.observe(img);
+    });
+  }
+</script>
