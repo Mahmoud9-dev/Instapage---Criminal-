@@ -1,0 +1,178 @@
+<!-- ========================================== -->
+<!-- PHASE 1: QUICK WINS IMPLEMENTATION GUIDE  -->
+<!-- Total Expected Improvement: +3-5 Points   -->
+<!-- Implementation Time: 15-30 minutes        -->
+<!-- Risk Level: LOW                            -->
+<!-- ========================================== -->
+
+<!-- 
+PHASE 1 OVERVIEW:
+This phase implements the highest-impact, lowest-risk optimizations:
+1. Preconnect tags for external origins (immediate network boost)
+2. Font optimization with display: swap (text rendering improvement)
+
+BASELINE SCORES:
+- Mobile: 87
+- Desktop: 91
+
+EXPECTED AFTER PHASE 1:
+- Mobile: 90-92
+- Desktop: 94-96
+-->
+
+<!-- ========================================== -->
+<!-- STEP 1: ADD PRECONNECT TAGS               -->
+<!-- Copy lines 25-28 to HEAD section          -->
+<!-- ========================================== -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://www.googletagmanager.com" />
+<link rel="preconnect" href="https://intaker.co" />
+
+<!-- ========================================== -->
+<!-- STEP 2: ADD OPTIMIZED FONT LOADING        -->
+<!-- Copy lines 33-52 to HEAD section          -->
+<!-- REPLACE any existing font loading code    -->
+<!-- ========================================== -->
+
+<style>
+  /* Optimized Google Fonts Loading - Only Essential Weights */
+  @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap");
+
+  /* Font Display Swap for All Fonts */
+  * {
+    font-display: swap;
+  }
+
+  /* Prevent Layout Shift - Reserve Font Space */
+  body {
+    font-family: "Open Sans", Arial, sans-serif;
+    font-display: swap;
+  }
+
+  /* Fallback Font Stack */
+  .text-fallback {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+</style>
+
+<!-- ========================================== -->
+<!-- IMPLEMENTATION INSTRUCTIONS               -->
+<!-- ========================================== -->
+
+<!-- 
+STEP-BY-STEP PROCESS:
+
+1. Open Instapage Editor
+   - Go to https://testcopycriminaloptimize.pagedemo.co/
+   - Click "Edit Page" button
+
+2. Access HTML/CSS Settings
+   - Look for "Settings" or "HTML/CSS" button
+   - Click on "HEAD" tab
+
+3. Add Preconnect Tags
+   - Scroll to the very top of the HEAD section
+   - Paste lines 25-28 at the beginning
+   - These should be the FIRST tags in HEAD
+
+4. Add Font Optimization
+   - Look for existing font loading code (Google Fonts imports)
+   - DELETE any existing @import or <link> tags for Google Fonts
+   - Paste lines 33-52 after the preconnect tags
+
+5. Save Changes
+   - Click "Save" button in Instapage
+   - Wait for save confirmation
+
+6. Publish for Testing
+   - Click "Publish" or "Update" button
+   - Wait for publish confirmation
+-->
+
+<!-- ========================================== -->
+<!-- TESTING CHECKLIST                         -->
+<!-- ========================================== -->
+
+<!-- 
+IMMEDIATE TESTING:
+
+1. Visual Check (2 minutes)
+   ✅ Page loads without errors
+   ✅ Fonts appear correctly
+   ✅ No layout shifts visible
+   ✅ Text renders immediately (no blank text period)
+
+2. Developer Tools Check (3 minutes)
+   ✅ Open Chrome DevTools (F12)
+   ✅ Go to Network tab
+   ✅ Reload page
+   ✅ Verify preconnect requests appear early
+   ✅ Check that only 3 font weights load (not 9)
+   ✅ No console errors
+
+3. Lighthouse Performance Test (5 minutes)
+   ✅ Open Chrome DevTools (F12)
+   ✅ Go to Lighthouse tab
+   ✅ Run Mobile test
+   ✅ Run Desktop test
+   ✅ Document new scores
+
+EXPECTED RESULTS:
+- Mobile: 87 → 90-92 (+3-5 points)
+- Desktop: 91 → 94-96 (+3-5 points)
+- First Contentful Paint: Improved
+- Cumulative Layout Shift: Reduced
+-->
+
+<!-- ========================================== -->
+<!-- TROUBLESHOOTING                           -->
+<!-- ========================================== -->
+
+<!-- 
+IF FONTS DON'T LOAD CORRECTLY:
+1. Check that old font imports are completely removed
+2. Verify @import is inside <style> tags
+3. Clear browser cache and test again
+
+IF PRECONNECT ISN'T WORKING:
+1. Verify preconnect tags are at the very top of HEAD
+2. Check for typos in domain names
+3. Ensure crossorigin attribute is present for font domains
+
+IF LIGHTHOUSE SCORES DON'T IMPROVE:
+1. Wait 2-3 minutes after publishing for CDN update
+2. Test in incognito mode to avoid cache issues
+3. Run test 2-3 times for consistent results
+
+ROLLBACK IF NEEDED:
+To revert changes:
+1. Remove the preconnect tags (lines 25-28)
+2. Remove the optimized font CSS (lines 33-52)
+3. Add back original font loading code
+4. Save and publish
+-->
+
+<!-- ========================================== -->
+<!-- NEXT STEPS AFTER PHASE 1                  -->
+<!-- ========================================== -->
+
+<!-- 
+WHEN PHASE 1 IS SUCCESSFUL:
+1. Document the new Lighthouse scores
+2. Take screenshots of improvements
+3. Move to Phase 2: GTM & Scripts Cleanup
+4. Phase 2 files: phase2-head-gtm-clean.html, phase2-body-gtm-noscript.html
+
+COMMUNICATION WITH DEVELOPER:
+Report back with:
+- ✅ "Phase 1 implemented successfully"
+- ✅ New Lighthouse scores (mobile/desktop)
+- ✅ Any issues encountered
+- ✅ Ready for Phase 2
+
+Phase 1 Complete! 🎉
+Expected Impact: +3-5 Lighthouse points
+Next: Phase 2 - GTM Cleanup (+1-2 points)
+-->

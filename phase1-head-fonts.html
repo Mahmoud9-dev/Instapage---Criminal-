@@ -1,0 +1,59 @@
+<!-- ================================ -->
+<!-- PHASE 1: FONT OPTIMIZATION      -->
+<!-- Target: Text rendering + CLS     -->
+<!-- Add to: Instapage HEAD section   -->
+<!-- Expected: +1-2 Lighthouse points -->
+<!-- ================================ -->
+
+<!-- 
+INSTRUCTIONS:
+1. Copy the code below (lines 12-31)
+2. Open Instapage → HTML/CSS → HEAD tab
+3. REPLACE existing font loading code with this optimized version
+4. Save and test
+
+CURRENT PROBLEM:
+- Loading 9 font weights (100,300,400,600,700,900 + italics)
+- No font-display: swap causing text rendering delays
+- Causing layout shifts and performance issues
+-->
+
+<style>
+  /* Optimized Google Fonts Loading - Only Essential Weights */
+  @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap");
+
+  /* Font Display Swap for All Fonts */
+  * {
+    font-display: swap;
+  }
+
+  /* Prevent Layout Shift - Reserve Font Space */
+  body {
+    font-family: "Open Sans", Arial, sans-serif;
+    font-display: swap;
+  }
+
+  /* Fallback Font Stack */
+  .text-fallback {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+</style>
+
+<!-- 
+WHAT THIS DOES:
+- Reduces font loading from 9 weights to 3 essential weights (400, 600, 700)
+- Adds font-display: swap to prevent invisible text during font swap
+- Provides fallback fonts to reduce layout shift
+- Improves both First Contentful Paint and Cumulative Layout Shift
+
+BEFORE/AFTER:
+REMOVE: Any existing Google Fonts @import or <link> tags
+REPLACE WITH: The optimized version above
+
+TESTING AFTER IMPLEMENTATION:
+1. Save in Instapage
+2. Check Network tab - should see fewer font requests
+3. Run Lighthouse test  
+4. Check for text rendering improvements
+5. Expected: Mobile +1-2 points, Desktop +1-2 points
+-->

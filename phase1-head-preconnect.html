@@ -1,0 +1,34 @@
+<!-- ================================ -->
+<!-- PHASE 1: PRECONNECT OPTIMIZATION -->
+<!-- Target: Network performance boost -->
+<!-- Add to: Instapage HEAD section    -->
+<!-- Expected: +2-3 Lighthouse points -->
+<!-- ================================ -->
+
+<!-- 
+INSTRUCTIONS:
+1. Copy the code below (lines 12-16)
+2. Open Instapage → HTML/CSS → HEAD tab
+3. Paste at the very top of the HEAD section
+4. Save and test
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://www.googletagmanager.com" />
+<link rel="preconnect" href="https://intaker.co" />
+
+<!-- 
+WHAT THIS DOES:
+- Establishes early connections to slow external domains
+- Reduces DNS lookup and SSL handshake time
+- Improves loading of fonts, GTM, and chat widget
+- Should improve both mobile and desktop Lighthouse scores
+
+TESTING AFTER IMPLEMENTATION:
+1. Save in Instapage
+2. Publish to test URL
+3. Run Lighthouse test
+4. Check Network tab - should see faster external domain loading
+5. Expected improvement: Mobile 87→89+, Desktop 91→93+
+-->
